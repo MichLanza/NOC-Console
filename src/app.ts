@@ -1,5 +1,6 @@
+import { envs } from "./config/plugins/envs.plugin";
 import { ServerApp } from "./presentation/server";
-
+import 'dotenv/config';
 
 (async () => {
     await main();
@@ -8,7 +9,7 @@ import { ServerApp } from "./presentation/server";
 
 
 async function main() {
-    
-    ServerApp.Start();
+    console.log(envs.PORT);
+    // ServerApp.Start();
 
 }

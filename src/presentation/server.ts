@@ -1,5 +1,5 @@
 import { CheckService } from "../domain/use-cases/checks/check-service";
-import { CronSerive } from "./cron/cron-service";
+import { CronService } from "./cron/cron-service";
 import { LogRepositoryImp } from "../Infrastructure/repositories/log.repository";
 import { FileSystemDataSource } from "../Infrastructure/datasources/file-system.datasource";
 
@@ -15,7 +15,7 @@ export class ServerApp {
 
         console.log('Server started...');
         const url = 'http://localhost:3000/';
-        CronSerive.createjob(
+        CronService.createjob(
             '*/5 * * * * *',
             () => {
                 new CheckService(

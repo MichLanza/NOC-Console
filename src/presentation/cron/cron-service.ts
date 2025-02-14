@@ -4,7 +4,7 @@ type Crontime = string | Date;
 type OnTick = () => void;
 
 
-export class CronSerive {
+export class CronService {
 
     static createjob(cronTime: Crontime, onTick : OnTick): CronJob {
 
