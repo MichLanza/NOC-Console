@@ -1,9 +1,15 @@
-import { error } from "console";
 import { CheckService } from "../domain/use-cases/checks/check-service";
 import { CronSerive } from "./cron/cron-service";
+import { LogRepositoryImp } from "../Infrastructure/repositories/log.repository";
+import { FileSystemDataSource } from "../Infrastructure/datasources/file-system.datasource";
 
+
+const FileSystemLogRepository = new LogRepositoryImp(
+    new FileSystemDataSource()
+);
 
 export class ServerApp {
+
 
     static Start() {
 
@@ -13,8 +19,9 @@ export class ServerApp {
             '*/5 * * * * *',
             () => {
                 new CheckService(
-                    () =>  console.log(`${url} is ok`),
+                    () => console.log(`${url} is ok`),
                     (error) => console.log(error),
+                    FileSystemLogRepository,
                 ).execute(url);
             });
     }
