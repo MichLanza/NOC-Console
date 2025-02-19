@@ -9,7 +9,6 @@ import 'dotenv/config';
 
 
 async function main() {
-    // console.log(envs.PORT);
     ServerApp.Start();
 
 }

@@ -27,8 +27,8 @@ Este proyecto es una aplicación Node.js. A continuación, se detallan los pasos
 1. Crea un archivo `.env` o clonar el archivo `env.template` en la raíz del proyecto.
 2. Agrega las siguientes variables de entorno al archivo `.env`:
     ```env
-    MAILER_EMAIL=
-    MAILER_SECRET_KEY=
+    MAILER_EMAIL= email@email.com
+    MAILER_SECRET_KEY= 12356
     PROD = false
     PORT = 3000
     ```
@@ -45,5 +45,6 @@ La aplicación estará disponible en `http://localhost:3000`.
 ## Scripts Disponibles
 
 - `npm run dev`: Inicia la aplicación en modo desarrollo.
+- `npm start`: Inicia la aplicación.
 - `npm run tests`: Ejecuta las pruebas.
 
