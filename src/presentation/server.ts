@@ -4,10 +4,13 @@ import { LogRepositoryImp } from "../Infrastructure/repositories/log.repository"
 import { FileSystemDataSource } from "../Infrastructure/datasources/file-system.datasource";
 import { EmailService } from "./email/email.service";
 import { SendEmailLogs } from "../domain/use-cases/email/send-mail-logs";
+import { MongoLogDataSource } from "../Infrastructure/datasources/mongo.datasource";
+import { LogSeverityLevel } from "../domain/entities/log.entity";
 
 
-const FileSystemLogRepository = new LogRepositoryImp(
-    new FileSystemDataSource()
+const logRepository = new LogRepositoryImp(
+    // new FileSystemDataSource(),
+    new MongoLogDataSource()
 );
 
 
@@ -16,7 +19,7 @@ const emailService = new EmailService();
 export class ServerApp {
 
 
-    static Start() {
+    static async Start() {
 
         console.log('Server started...');
 
@@ -24,16 +27,18 @@ export class ServerApp {
 
         const url = 'http://localhost:3000/';
         CronService.createjob(
-            '*/5 * * * * *',
+            '*/10 * * * * *',
             () => {
                 new CheckService(
                     () => console.log(`${url} is ok`),
                     (error) => console.log(error),
-                    FileSystemLogRepository,
+                    logRepository,
                 ).execute(url);
             });
-
-        new SendEmailLogs(emailService, FileSystemLogRepository).execute('michelelanza07@gmail.com')
+        const logs = await logRepository.getLogs(LogSeverityLevel.high);
+        console.log(logs);
+        // new SendEmailLogs(emailService, logRepository).execute('michelelanza07@gmail.com');
+       
         // const emailService = new EmailService();
         // emailService.sendEmailWithAttachmentsFileSystem('michelelanza07@gmail.com');
     }

@@ -61,6 +61,7 @@
     "minimist": "^1.2.8",
     "minipass": "^7.1.2",
     "mkdirp": "^1.0.4",
+    "mongoose": "^8.10.1",
     "ms": "^2.1.3",
     "nodemailer": "^6.10.0",
     "normalize-path": "^3.0.0",

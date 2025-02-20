@@ -31,6 +31,15 @@ Este proyecto es una aplicación Node.js. A continuación, se detallan los pasos
     MAILER_SECRET_KEY= 12356
     PROD = false
     PORT = 3000
+    MAILER_SERVICE=
+    MONGO_URL =
+    MONGO_DB_NAME =
+    MONGO_USER=
+    POSTGRES_URL=
+    MONGO_PASS=
+    POSTGRES_USER=
+    POSTGRES_DB=
+    POSTGRES_PASSWORD=
     ```
 
 ## Ejecución
